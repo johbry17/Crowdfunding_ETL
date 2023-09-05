@@ -1,0 +1,36 @@
+# ERD for ETL Crowdfunding
+# https://app.quickdatabasediagrams.com/#/d/YmTQEe
+
+category
+-
+category_id varchar PK
+category varchar
+
+subcategory
+-
+subcategory_id varchar PK
+subcategory varchar
+
+campaign
+-
+cf_id int PK
+contact_id int
+company_name varchar
+description varchar
+goal float
+pledged float
+outcome varchar
+backers_count int
+country varchar
+currency varchar
+launch_date timestamp
+end_date timestamp
+category_id varchar FK >- category.category_id
+subcategory_id varchar FK >- subcategory.subcategory_id
+
+contacts
+-
+contact_id int PK FK - campaign.contact_id
+first_name varchar
+last_name varchar
+email varchar
