@@ -1,4 +1,22 @@
-﻿-- drop tables (in reverse order, to avoid errors) if they already exist
+﻿/*
+Alternate verson of schema that automatically imports data, bypassing the need for the pgAdmin GUI 'Import/Export'
+
+Saves a lot of time
+
+Unfortunately, it relies on a local path
+I tried to use github, 'https://raw.githubusercontent.com/blah/blah'blah.csv', but pgAdmin does not like remote data sources
+If you can figure it out, let me know
+So, to get it to work, I had to create a local path to each .csv
+AND I had to edit permissions on each .csv to allow Everyone access to read each individual file
+Bit of a security risk, but I believe it's acceptable when dealing with 4 .csv's from a crowdfunding campaign for a school assignment on my personal laptop
+Something to consider in professional settings, though
+
+To use this, one would have to save all six .csv's locally, 
+edit each of the six below 'Local\Path\Resources\blah.csv' in COPY FROM, 
+and grant permissions to each csv
+*/
+
+-- drop tables (in reverse order, to avoid errors) if they already exist
 DROP TABLE IF EXISTS contacts;
 DROP TABLE IF EXISTS campaign;
 DROP TABLE IF EXISTS subcategory;
@@ -27,8 +45,8 @@ CSV HEADER;
 
 -- create campaign table
 CREATE TABLE campaign (
-    cf_id int PRIMARY KEY,
-    contact_id int NOT NULL,
+    cf_id int NOT NULL,
+    contact_id int PRIMARY KEY,
     company_name varchar NOT NULL,
     description varchar NOT NULL,
     goal float NOT NULL,
